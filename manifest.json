@@ -1,0 +1,12 @@
+{
+  "id": "account_dashboard",
+  "version": "0.1.0",
+  "entry": "./Entry",
+  "shared": [
+    { "name": "react", "requiredRange": "^18.3.0", "singleton": true },
+    { "name": "react-native", "requiredRange": "^0.76.0", "singleton": true },
+    { "name": "@tanstack/react-query", "requiredRange": "^5.0.0", "singleton": true },
+    { "name": "@shopify/flash-list", "requiredRange": "^1.7.0", "singleton": true }
+  ],
+  "capabilities": ["accounts:read"]
+}
