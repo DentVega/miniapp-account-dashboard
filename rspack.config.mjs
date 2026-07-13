@@ -44,6 +44,9 @@ export default Repack.defineRspackConfig({
         'react-native': { singleton: true, eager: false, requiredVersion: '0.76.6' },
         '@tanstack/react-query': { singleton: true, requiredVersion: '^5.0.0' },
         '@shopify/flash-list': { singleton: true, requiredVersion: '^1.7.0' },
+        // Stateful/context lib (ThemeProvider/useTheme): MUST be a singleton so the
+        // miniapp consumes the HOST's copy and its ThemeProvider, not a private one.
+        '@org/ui-kit': { singleton: true, eager: false, requiredVersion: '^0.1.0' },
       },
     }),
   ],
