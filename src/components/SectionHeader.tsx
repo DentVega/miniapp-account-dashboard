@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { AppText, useTheme } from "@org/ui-kit";
+import { AppText, useTheme } from "@dentvega/ui-kit";
 import type { Money } from "../domain";
 import { formatMoney } from "../domain";
 

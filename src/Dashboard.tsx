@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { FlashList, type ListRenderItem } from "@shopify/flash-list";
-import { AppText, Box, useTheme } from "@org/ui-kit";
+import { AppText, Box, useTheme } from "@dentvega/ui-kit";
 import type { ListItem } from "./domain";
 import { groupByDay, toListItems } from "./domain";
 import { useAccountData } from "./data/useAccountData";

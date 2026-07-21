@@ -1,5 +1,5 @@
 /**
- * Build-time entry (shared package @org/account-dashboard, ADR-005).
+ * Build-time entry (shared package @dentvega/account-dashboard, ADR-005).
  * The same components are exposed as a federated remote via rspack.config.mjs
  * ("./Entry"). One source, two consumption modes.
  */

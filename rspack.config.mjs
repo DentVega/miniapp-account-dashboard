@@ -46,7 +46,7 @@ export default Repack.defineRspackConfig({
         '@shopify/flash-list': { singleton: true, requiredVersion: '^1.7.0' },
         // Stateful/context lib (ThemeProvider/useTheme): MUST be a singleton so the
         // miniapp consumes the HOST's copy and its ThemeProvider, not a private one.
-        '@org/ui-kit': { singleton: true, eager: false, requiredVersion: '^0.1.0' },
+        '@dentvega/ui-kit': { singleton: true, eager: false, requiredVersion: '^0.1.0' },
       },
     }),
   ],

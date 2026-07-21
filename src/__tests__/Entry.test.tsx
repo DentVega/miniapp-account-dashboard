@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "@org/ui-kit";
-import type { Capability, CapabilityGrant } from "@org/miniapp-contract";
+import { ThemeProvider } from "@dentvega/ui-kit";
+import type { Capability, CapabilityGrant } from "@dentvega/miniapp-contract";
 import Entry from "../Entry";
 
 // FlashList relies on native layout to render its window; in the test env we mock

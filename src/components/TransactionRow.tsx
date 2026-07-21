@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { AppText } from "@org/ui-kit";
+import { AppText } from "@dentvega/ui-kit";
 import type { Transaction } from "../domain";
 import { formatMoney } from "../domain";
 
