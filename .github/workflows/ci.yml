@@ -23,10 +23,15 @@ jobs:
           cache: pnpm
 
       - name: Install deps (GitHub Packages)
-        run: pnpm install --frozen-lockfile=false
+        # pnpm ignores the ${TOKEN} in the committed .npmrc (it won't expand env
+        # vars in a repo-committed file). Write the auth to a user-level ~/.npmrc
+        # with the literal token so pnpm uses it. @dentvega/* are public packages,
+        # so the automatic GITHUB_TOKEN is enough to read them.
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
+          pnpm install --frozen-lockfile=false
         env:
-          # .npmrc points @org to GitHub Packages; token needs read:packages.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build chunk
         run: pnpm exec react-native webpack-bundle --platform android --entry-file src/Entry.tsx --bundle-output build/account_dashboard.container.js.bundle --dev false
