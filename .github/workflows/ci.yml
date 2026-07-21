@@ -37,7 +37,10 @@ jobs:
         run: pnpm exec react-native webpack-bundle --platform android --entry-file src/Entry.tsx --bundle-output build/account_dashboard.container.js.bundle --dev false
 
       - name: Zip build output
-        run: cd build && zip -r ../build.zip .
+        # Zip the FLAT contents of the emitted dir (container + chunks at the
+        # root), not build/ — otherwise chunks land under generated/android/ and
+        # the host can't resolve them (it expects them beside the container).
+        run: cd build/generated/android && zip -r "$GITHUB_WORKSPACE/build.zip" .
 
       - name: Publish to Backstage
         run: node scripts/publish.mjs build.zip
