@@ -1,6 +1,6 @@
 import React from "react";
-import type { MiniappEntryProps } from "@org/miniapp-contract";
-import { AppText, Box } from "@org/ui-kit";
+import type { MiniappEntryProps } from "@dentvega/miniapp-contract";
+import { AppText, Box } from "@dentvega/ui-kit";
 import { Dashboard } from "./Dashboard";
 
 const REQUIRED_CAPABILITY = "accounts:read";
