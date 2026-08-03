@@ -1,49 +1,26 @@
 name: Publish miniapp
 
-# Build the federated chunk and publish it to Backstage (ADR-016).
+# Thin caller — el build+publish real vive en el reusable publish.yml, y el
+# gate de compat en PRs vive en check-compat.yml. Un fix en cualquiera de esos
+# alcanza a todas las miniapps a la vez (referencian @main), sin update por repo.
 
 on:
   push:
     branches: [main]
     tags: ["v*"]
-  # Lets Backstage's "Deploy" button trigger a build+publish on demand.
+  # Deja que el botón "Deploy" de Backstage dispare un build+publish on demand.
   workflow_dispatch:
+  # Gate de compat en el PR (shift-left): la ✗ aparece antes del merge.
+  pull_request:
 
 jobs:
+  # Corre en PRs: chequea compat contra el host contract SIN buildear/publicar.
+  compat:
+    uses: DentVega/miniapp-template/.github/workflows/check-compat.yml@main
+    secrets: inherit
+
   publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - name: Install deps (GitHub Packages)
-        # pnpm ignores the ${TOKEN} in the committed .npmrc (it won't expand env
-        # vars in a repo-committed file). Write the auth to a user-level ~/.npmrc
-        # with the literal token so pnpm uses it. @dentvega/* are public packages,
-        # so the automatic GITHUB_TOKEN is enough to read them.
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
-          pnpm install --frozen-lockfile=false
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build chunk
-        run: pnpm exec react-native webpack-bundle --platform android --entry-file src/Entry.tsx --bundle-output build/account_dashboard.container.js.bundle --dev false
-
-      - name: Zip build output
-        # Zip the FLAT contents of the emitted dir (container + chunks at the
-        # root), not build/ — otherwise chunks land under generated/android/ and
-        # the host can't resolve them (it expects them beside the container).
-        run: cd build/generated/android && zip -r "$GITHUB_WORKSPACE/build.zip" .
-
-      - name: Publish to Backstage
-        run: node scripts/publish.mjs build.zip
-        env:
-          BACKSTAGE_URL: ${{ secrets.BACKSTAGE_URL }}
-          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+    # El publish NO corre en PRs — solo en push a main / tag / botón Deploy.
+    if: github.event_name != 'pull_request'
+    uses: DentVega/miniapp-template/.github/workflows/publish.yml@main
+    secrets: inherit
