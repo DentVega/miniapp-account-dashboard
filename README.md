@@ -56,3 +56,5 @@ pnpm test         # domain + Entry tests
 ---
 
 <sub>Part of a portfolio/demo showcasing Module Federation micro-frontends for React Native. Not a production banking product.</sub>
+
+<!-- verify: PR-time compat gate wiring -->
