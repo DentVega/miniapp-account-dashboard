@@ -8,12 +8,8 @@
   "types": "src/index.ts",
   "scripts": {
     "start": "react-native webpack-start --port 9000",
-<<<<<<< HEAD
     "bundle:android": "react-native webpack-bundle --platform android --entry-file src/Entry.tsx --bundle-output build/account_dashboard.container.js.bundle --dev false",
-=======
-    "bundle:android": "react-native webpack-bundle --platform android --entry-file src/Entry.tsx --bundle-output build/__MINIAPP_ID__.container.js.bundle --dev false",
-    "bundle:ios": "react-native webpack-bundle --platform ios --entry-file src/Entry.tsx --bundle-output build/ios/__MINIAPP_ID__.container.js.bundle --dev false",
->>>>>>> 47131df9beef779dcc4e818922d4b63439f49c8a
+    "bundle:ios": "react-native webpack-bundle --platform ios --entry-file src/Entry.tsx --bundle-output build/ios/account_dashboard.container.js.bundle --dev false",
     "typecheck": "tsc --noEmit",
     "test": "node --test scripts/*.test.mjs scripts/__tests__/*.test.mjs && jest --passWithNoTests"
   },
