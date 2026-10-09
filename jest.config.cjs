@@ -2,10 +2,11 @@
 module.exports = {
   preset: "react-native",
   testMatch: ["**/*.test.tsx", "**/*.test.ts"],
-  // Standalone repo uses npm's flat node_modules — transform the RN family, ignore the rest.
+  // Transform the RN family, ignore the rest. `\\.pnpm` keeps pnpm's store path
+  // (node_modules/.pnpm/<pkg>/node_modules/<pkg>) from being ignored at its first segment.
   transformIgnorePatterns: [
-    // @org/* incluido: en dev se consume ui-kit como fuente TS (file:); en registry es dist JS (no-op).
-    "node_modules/(?!(?:react-native|@react-native|@react-native-community|@react-navigation|@testing-library|@shopify/flash-list|@org)/)",
+    // @dentvega/* incluido: el dist de ui-kit es ESM (`export`) y jest corre en CJS.
+    "node_modules/(?!(?:\\.pnpm|react-native|@react-native|@react-native-community|@react-navigation|@testing-library|@shopify/flash-list|@dentvega)/)",
   ],
   // The mocked fetch uses a short timer; forceExit avoids a hang if one is still pending.
   forceExit: true,

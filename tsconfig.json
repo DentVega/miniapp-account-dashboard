@@ -1,12 +1,15 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
+    "target": "ES2022",
     "lib": ["ES2022", "DOM"],
+    "module": "ESNext",
     "moduleResolution": "Bundler",
-    "types": ["jest", "react"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "noEmit": true,
-    "verbatimModuleSyntax": false
+    "types": ["jest", "react"]
   },
   "include": ["src"]
 }
