@@ -34,7 +34,7 @@ src/data/               useAccountData (hook de datos)
 
 - 🧮 **Dominio puro y testeado** — manejo de dinero multi-moneda (EUR/USD/MXN con céntimos) y lógica de transacciones, testeados de forma independiente de la UI.
 - 🔐 **Protegida por capability** — declara `accounts:read`; el host la concede acotada y revocable.
-- 📜 **Guiada por contrato** — la forma de `Entry` y las deps compartidas vienen de `@org/miniapp-contract`.
+- 📜 **Guiada por contrato** — la forma de `Entry` y las deps compartidas vienen de `@dentvega/miniapp-contract`.
 - ⚡ **FlashList** para la lista de transacciones.
 
 ## Desarrollo
