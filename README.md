@@ -34,7 +34,7 @@ src/data/               useAccountData (data hook)
 
 - 🧮 **Pure, tested domain** — multi-currency money handling (EUR/USD/MXN with cents) and transaction logic, fully unit-tested independent of UI.
 - 🔐 **Capability-gated** — declares `accounts:read`; the host grants it scoped and revocably.
-- 📜 **Contract-driven** — the `Entry` shape and shared-deps come from `@org/miniapp-contract`.
+- 📜 **Contract-driven** — the `Entry` shape and shared-deps come from `@dentvega/miniapp-contract`.
 - ⚡ **FlashList** for the transactions list.
 
 ## Develop
